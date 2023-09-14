@@ -4,7 +4,7 @@ from langchain.chains import LLMChain
 
 from third_parties.linkedin import scrape_linkedin_profile
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print("hello langchain")
 
     summary_template = """
@@ -14,16 +14,15 @@ if __name__ == '__main__':
     """
 
     summary_prompt_template = PromptTemplate(
-        input_variables=['information'], template=summary_template
+        input_variables=["information"], template=summary_template
     )
 
-    llm = ChatOpenAI(temperature=0, model_name='gpt-3.5-turbo')
+    llm = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo")
 
     chain = LLMChain(llm=llm, prompt=summary_prompt_template)
 
     linkedin_data = scrape_linkedin_profile(
-        linkedin_profile_url='https://www.linkedin.com/in/harrison-chase-961287118/'
+        linkedin_profile_url="https://www.linkedin.com/in/harrison-chase-961287118/"
     )
 
     print(chain.run(information=linkedin_data))
-
