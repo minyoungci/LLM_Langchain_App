@@ -4,13 +4,13 @@ from langchain.chains import LLMChain
 
 from agents.linkedIn_lookup_agent import lookup as linkedin_lookup_agent
 from third_parties.linkedin import scrape_linkedin_profile
-from output_parser import person_intel_parser
+from output_parser import person_intel_parser, PersonIntel
 
 from dotenv import load_dotenv
 import os
 
 
-def ice_break(name: str) -> str:
+def ice_break(name: str) -> tuple[PersonIntel, str]:
 
     linkedin_profile_url = linkedin_lookup_agent(name="Eden Marco Udemy")
     linkedin_data = scrape_linkedin_profile(linkedin_profile_url=linkedin_profile_url)
