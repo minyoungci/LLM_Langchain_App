@@ -11,6 +11,7 @@ import os
 
 
 def ice_break(name: str) -> str:
+
     linkedin_profile_url = linkedin_lookup_agent(name="Eden Marco Udemy")
     linkedin_data = scrape_linkedin_profile(linkedin_profile_url=linkedin_profile_url)
 
@@ -24,11 +25,11 @@ def ice_break(name: str) -> str:
     """
 
     summary_prompt_template = PromptTemplate(
-        input_variables=["information"],
+        input_variables=["linkedin_information"],
         template=summary_template,
-        partial_variables={
+        partial_variables= {
             "format_instructions": person_intel_parser.get_format_instructions()
-        },
+        }
     )
 
     llm = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo")

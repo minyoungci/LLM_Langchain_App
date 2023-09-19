@@ -1,5 +1,5 @@
 # tweepy -> 트위터 api 사용
-# 링크드인 코드와 비슷함. 
+# 링크드인 코드와 비슷함.
 
 import os
 from datetime import datetime, timezone
@@ -17,6 +17,7 @@ auth.set_access_token(
 )
 api = tweepy.API(auth)
 
+
 def scrape_user_tweets(username, num_tweets=20):
     """
     Twitter 사용자의 원본 트윗 (즉, 리트윗이나 답글이 아닌)을 스크랩하고, 이를 사전의 목록으로 반환합니다.
@@ -28,7 +29,7 @@ def scrape_user_tweets(username, num_tweets=20):
     tweet_list = []
 
     for tweet in tweets:
-        if "RT @" not in tweet.text and not tweet.text.startswith("@"): # 실제 트윗, 리트윗 등 
+        if "RT @" not in tweet.text and not tweet.text.startswith("@"):  # 실제 트윗, 리트윗 등
             tweet_dict = {}
             tweet_dict["time_posted"] = str(
                 datetime.now(timezone.utc) - tweet.created_at
